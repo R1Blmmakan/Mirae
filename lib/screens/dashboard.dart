@@ -49,24 +49,28 @@ class Dashboard extends StatelessWidget {
                       'assets/icon/nature.svg',
                       'Nature',
                       Colors.green,
+                      '/nature',
                     ),
                     _categoryItem(
                       context,
                       'assets/icon/culture.svg',
                       'Culture',
                       Colors.red,
+                      '/culture',
                     ),
                     _categoryItem(
                       context,
                       'assets/icon/biography.svg',
                       'Biography',
                       Colors.yellow,
+                      '/biography',
                     ),
                     _categoryItem(
                       context,
                       'assets/icon/global-values.svg',
                       'Global Values',
                       Colors.blue,
+                      '/global-values',
                     ),
                   ],
                 ),
@@ -148,13 +152,14 @@ class Dashboard extends StatelessWidget {
     String icon,
     String label,
     Color color,
+    String routeName,
   ) {
     return InkWell(
       onTap: () {
         if (kDebugMode) {
           print("Pindah ke $label");
         }
-      Navigator.push(context, MaterialPageRoute(builder: (context) => DestinasiPage()));
+      Navigator.pushNamed(context, routeName);
       },
       borderRadius: BorderRadius.circular(15),
       child: Padding(

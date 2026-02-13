@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
-import 'package:mirae/screens/dashboard.dart'; // Ensure class Dashboard {} exists here
+import 'package:mirae/screens/dashboard.dart';
+import 'package:mirae/screens/destinasi.dart';
+import 'package:mirae/screens/nature.dart';
 
 void main() async {
   // 1. Core initialization
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const ProfessionalSplash(),
         '/home': (context) => const Dashboard(),
+        '/jelajahi': (context) => const DestinasiPage(),
+        '/nature': (context) => const NaturePage(),
       },
     );
   }
