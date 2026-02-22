@@ -14,7 +14,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width - 40;
+    double screenWidth = MediaQuery.of(context).size.width - 50;
     double itemWidth = screenWidth / 3;
 
     return Scaffold(
@@ -31,9 +31,9 @@ class _DashboardState extends State<Dashboard> {
             ],
           ),
           Positioned(
-            bottom: 25,
-            left: 20,
-            right: 20,
+            bottom: MediaQuery.of(context).padding.bottom + 15,
+            left: 25,
+            right: 25,
             child: _buildAnimatedNavbar(screenWidth, itemWidth),
           ),
         ],
@@ -47,7 +47,7 @@ class _DashboardState extends State<Dashboard> {
         top: MediaQuery.of(context).padding.top + 10,
         left: 24,
         right: 24,
-        bottom: 150, 
+        bottom: 160,
       ),
       children: [
         Align(
@@ -91,7 +91,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         const SizedBox(height: 15),
         AspectRatio(
-          aspectRatio: 1.5, 
+          aspectRatio: 1.5,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
@@ -115,45 +115,52 @@ class _DashboardState extends State<Dashboard> {
 
   Widget _buildAnimatedNavbar(double totalWidth, double itemWidth) {
     return SizedBox(
-      height: 95,
+      height: 100,
       child: Stack(
         clipBehavior: Clip.none,
+        alignment: Alignment.bottomCenter,
         children: [
           TweenAnimationBuilder<double>(
             tween: Tween<double>(begin: 0, end: _selectedIndex.toDouble()),
-            duration: const Duration(milliseconds: 350),
-            curve: Curves.easeOutBack, 
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutBack,
             builder: (context, value, child) {
               return CustomPaint(
-                size: Size(totalWidth, 70),
+                size: Size(totalWidth, 75),
                 painter: NavbarPainter(index: value, itemWidth: itemWidth),
               );
             },
           ),
-          SizedBox(
-            height: 95,
+          Container(
+            height: 75,
+            padding: const EdgeInsets.only(bottom: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                _navItem(0, Icons.home_filled, "Beranda"),
-                _navItem(1, Icons.location_on_outlined, "Jelajahi"),
-                _navItem(2, Icons.info_outline, "About Us"),
+                _navItem(0, Icons.home_filled, "Beranda", itemWidth),
+                _navItem(1, Icons.location_on_outlined, "Jelajahi", itemWidth),
+                _navItem(2, Icons.info_outline, "About Us", itemWidth),
               ],
             ),
           ),
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 350),
+            duration: const Duration(milliseconds: 500),
             curve: Curves.easeOutBack,
-            top: -10, 
+            bottom: 45,
             left: (itemWidth * _selectedIndex) + (itemWidth / 2) - 28,
             child: Container(
               width: 56,
               height: 56,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFF0000),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF0000),
                 shape: BoxShape.circle,
                 boxShadow: [
-                  BoxShadow(color: Color(0x66FF0000), blurRadius: 15, offset: Offset(0, 8)),
+                  BoxShadow(
+                    color: const Color(0xFFFF0000).withValues(alpha: 0.35),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
                 ],
               ),
               child: Icon(
@@ -168,15 +175,15 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Widget _navItem(int index, IconData icon, String label) {
+  Widget _navItem(int index, IconData icon, String label, double width) {
     bool isActive = _selectedIndex == index;
     return GestureDetector(
       onTap: () => setState(() => _selectedIndex = index),
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        width: 80,
+        width: width,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedOpacity(
               duration: const Duration(milliseconds: 200),
@@ -186,13 +193,13 @@ class _DashboardState extends State<Dashboard> {
             const SizedBox(height: 4),
             Text(
               label,
-              style: TextStyle(
-                color: isActive ? Colors.transparent : Colors.white,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
                 fontSize: 10,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 15),
           ],
         ),
       ),
@@ -227,27 +234,25 @@ class NavbarPainter extends CustomPainter {
     Paint paint = Paint()..color = const Color(0xFF1E1E1E)..style = PaintingStyle.fill;
     double centerTarget = (itemWidth * index) + (itemWidth / 2);
     Path path = Path();
-    
-    double topY = 25; 
+    double r = 25.0;
 
-    path.moveTo(35, topY); 
-    path.lineTo(centerTarget - 60, topY);
-
-
-    path.quadraticBezierTo(centerTarget - 45, topY, centerTarget - 35, topY + 15);
+    path.moveTo(r, 0);
+    path.lineTo(centerTarget - 48, 0);
+    path.quadraticBezierTo(centerTarget - 38, 0, centerTarget - 34, 18);
     path.arcToPoint(
-      Offset(centerTarget + 35, topY + 15), 
-      radius: const Radius.circular(40), 
-      clockwise: false
+      Offset(centerTarget + 34, 18),
+      radius: const Radius.circular(37),
+      clockwise: false,
     );
-    path.quadraticBezierTo(centerTarget + 45, topY, centerTarget + 60, topY);
-
-    path.lineTo(size.width - 35, topY);
-    path.quadraticBezierTo(size.width, topY, size.width, topY + 35);
-    path.lineTo(size.width, size.height + 20);
-    path.lineTo(0, size.height + 20);
-    path.lineTo(0, topY + 35);
-    path.quadraticBezierTo(0, topY, 35, topY);
+    path.quadraticBezierTo(centerTarget + 38, 0, centerTarget + 48, 0);
+    path.lineTo(size.width - r, 0);
+    path.quadraticBezierTo(size.width, 0, size.width, r);
+    path.lineTo(size.width, size.height - r);
+    path.quadraticBezierTo(size.width, size.height, size.width - r, size.height);
+    path.lineTo(r, size.height);
+    path.quadraticBezierTo(0, size.height, 0, size.height - r);
+    path.lineTo(0, r);
+    path.quadraticBezierTo(0, 0, r, 0);
     path.close();
 
     canvas.drawPath(path, paint);
