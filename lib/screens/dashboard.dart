@@ -138,8 +138,8 @@ class _DashboardState extends State<Dashboard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                _navItem(0, Icons.home_filled, "Beranda", itemWidth),
-                _navItem(1, Icons.location_on_outlined, "Jelajahi", itemWidth),
+                _navItem(0, Icons.home_filled, "Home", itemWidth),
+                _navItem(1, Icons.location_on_outlined, "Discover", itemWidth),
                 _navItem(2, Icons.info_outline, "About Us", itemWidth),
               ],
             ),
