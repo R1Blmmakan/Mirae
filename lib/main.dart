@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mirae App',
       debugShowCheckedModeBanner: false,
-      // Mapping the logic: '/' is the starting point, '/home' is the destination
       initialRoute: '/',
       routes: {
         '/': (context) => const ProfessionalSplash(),
@@ -97,13 +96,12 @@ class ProfessionalSplashState extends State<ProfessionalSplash>
       debugPrint(
         "STRATEGIC ERROR: Logo failed to load. Redirecting to prevent hang. $e",
       );
-      _navigateToHome(); // Fail-safe: don't leave user on a black screen
+      _navigateToHome();
     }
   }
 
   void _navigateToHome() {
     if (mounted) {
-      // Use pushReplacementNamed to wipe the Splash from the stack
       Navigator.of(context).pushReplacementNamed('/home');
     }
   }

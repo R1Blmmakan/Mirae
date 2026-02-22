@@ -28,7 +28,6 @@ flutter:
   - assets/img/
   - assets/lottie/
 
-
 flutter_launcher_icons:
   android: true
   ios: true
