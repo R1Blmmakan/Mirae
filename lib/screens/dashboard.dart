@@ -81,7 +81,7 @@ class _DashboardState extends State<Dashboard> {
             _categoryItem(context, 'assets/icon/nature.svg', 'Nature', const Color(0xFF4CAF50), '/nature'),
             _categoryItem(context, 'assets/icon/culture.svg', 'Culture', const Color(0xFFE53935), '/culture'),
             _categoryItem(context, 'assets/icon/biography.svg', 'Biography', const Color(0xFFFB8C00), '/biography'),
-            _categoryItem(context, 'assets/icon/global-values.svg', 'Global Values', const Color(0xFF00897B), '/global-values'),
+            _categoryItem(context, 'assets/icon/global-values.svg', 'Global Values', const Color(0xFF00897B), '/global_values'),
           ],
         ),
         const SizedBox(height: 35),
@@ -213,7 +213,8 @@ class _DashboardState extends State<Dashboard> {
         children: [
           Container(
             padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(color: const Color(0xFF1A1A1A), borderRadius: BorderRadius.circular(15)),
+            decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: color, width: 1.5)),
             child: SvgPicture.asset(iconPath, width: 24, height: 24, colorFilter: ColorFilter.mode(color, BlendMode.srcIn)),
           ),
           const SizedBox(height: 8),
