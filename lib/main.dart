@@ -9,13 +9,12 @@ import 'package:mirae/screens/biography.dart';
 import 'package:mirae/screens/global_values.dart';
 
 void main() async {
-  // 1. Core initialization
+
   WidgetsFlutterBinding.ensureInitialized();
 
   // 2. Lock orientation
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // 3. Launch the single source of truth
   runApp(const MyApp());
 }
 
@@ -64,7 +63,6 @@ class ProfessionalSplashState extends State<ProfessionalSplash>
       duration: const Duration(milliseconds: 1800),
     );
 
-    // THE REDIRECT LOGIC: This listens to the controller we defined above
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _navigateToHome();
@@ -196,7 +194,6 @@ class LogoRisePainter extends CustomPainter {
 
     canvas.restore();
 
-    // Draw closing ring logic
     if (logoOffset < 5) {
       final paint = Paint()
         ..color = Colors.white.withValues(alpha: holeScale.clamp(0.0, 1.0))
