@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeView extends StatefulWidget {
-  final Function(int)? onTabChange;
 
-  const HomeView({super.key, this.onTabChange});
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -133,10 +132,10 @@ class _HomeViewState extends State<HomeView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _categoryItem('assets/icon/nature.svg', 'Nature', const Color(0xFF4CAF50)),
-                  _categoryItem('assets/icon/culture.svg', 'Culture', const Color(0xFFE53935)),
-                  _categoryItem('assets/icon/biography.svg', 'Biography', const Color(0xFFFB8C00)),
-                  _categoryItem('assets/icon/global-values.svg', 'Global Values', const Color(0xFF00897B)),
+                  _categoryItem('assets/icon/nature.svg', 'Nature', const Color(0xFF4CAF50), onTap: () => Navigator.pushNamed(context, '/nature')),
+                  _categoryItem('assets/icon/culture.svg', 'Culture', const Color(0xFFE53935), onTap: () => Navigator.pushNamed(context, '/culture')),
+                  _categoryItem('assets/icon/biography.svg', 'Biography', const Color(0xFFFB8C00), onTap: () => Navigator.pushNamed(context, '/biography')),
+                  _categoryItem('assets/icon/global-values.svg', 'Global Values', const Color(0xFF00897B), onTap: () => Navigator.pushNamed(context, '/global_values')),
                 ],
               ),
               const SizedBox(height: 35),
@@ -163,9 +162,9 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget _categoryItem(String iconPath, String label, Color color) {
+  Widget _categoryItem(String iconPath, String label, Color color, {VoidCallback? onTap}) {
     return GestureDetector(
-      onTap: () => widget.onTabChange?.call(1),
+      onTap: onTap,
       child: Column(
         children: [
           Container(

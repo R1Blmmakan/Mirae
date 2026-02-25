@@ -37,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
               key: ValueKey<int>(_selectedIndex),
               index: _selectedIndex,
               children: [
-                HomeView(onTabChange: _onTabChange),
+                const HomeView(),
                 const DestinasiPage(),
                 const Center(child: Text("About Us Page")),
               ],
