@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/icon/logo.png',
+                    'assets/icons/logo.png',
                     height: 35,
                     errorBuilder: (context, _, _) => const Text(
                       "MIRAE",
@@ -132,10 +132,10 @@ class _HomeViewState extends State<HomeView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _categoryItem('assets/icon/nature.svg', 'Nature', const Color(0xFF4CAF50), onTap: () => Navigator.pushNamed(context, '/nature')),
-                  _categoryItem('assets/icon/culture.svg', 'Culture', const Color(0xFFE53935), onTap: () => Navigator.pushNamed(context, '/culture')),
-                  _categoryItem('assets/icon/biography.svg', 'Biography', const Color(0xFFFB8C00), onTap: () => Navigator.pushNamed(context, '/biography')),
-                  _categoryItem('assets/icon/global-values.svg', 'Global Values', const Color(0xFF00897B), onTap: () => Navigator.pushNamed(context, '/global_values')),
+                  _categoryItem('assets/icons/nature.svg', 'Nature', const Color(0xFF4CAF50), onTap: () => Navigator.pushNamed(context, '/nature')),
+                  _categoryItem('assets/icons/culture.svg', 'Culture', const Color(0xFFE53935), onTap: () => Navigator.pushNamed(context, '/culture')),
+                  _categoryItem('assets/icons/biography.svg', 'Biography', const Color(0xFFFB8C00), onTap: () => Navigator.pushNamed(context, '/biography')),
+                  _categoryItem('assets/icons/global-values.svg', 'Global Values', const Color(0xFF00897B), onTap: () => Navigator.pushNamed(context, '/global_values')),
                 ],
               ),
               const SizedBox(height: 35),

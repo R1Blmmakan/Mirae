@@ -1,4 +1,4 @@
-package com.example.flutter_babi
+package com.mirae
 
 import io.flutter.embedding.android.FlutterActivity
 
