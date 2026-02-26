@@ -16,9 +16,9 @@ class _HomeViewState extends State<HomeView> {
   Timer? _timer;
 
   final List<String> _bannerImages = [
-    'assets/img/banner_1.png',
-    'assets/img/banner_2.png',
-    'assets/img/banner_3.png',
+    'assets/img/banner_1.webp',
+    'assets/img/banner_2.webp',
+    'assets/img/banner_3.webp',
   ];
 
   @override
@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/icons/logo.png',
+                    'assets/icons/logo.webp',
                     height: 35,
                     errorBuilder: (context, _, _) => const Text(
                       "MIRAE",
@@ -150,7 +150,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: Image.asset('assets/img/map.png', fit: BoxFit.cover),
+                    child: Image.asset('assets/img/map.webp', fit: BoxFit.cover),
                   ),
                 ),
               ),

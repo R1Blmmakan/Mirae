@@ -83,7 +83,7 @@ class ProfessionalSplashState extends State<ProfessionalSplash>
       ),
     );
 
-    _loadLogo('assets/icon/icon.png');
+    _loadLogo('assets/icons/icon.png');
   }
 
   Future<void> _loadLogo(String assetPath) async {

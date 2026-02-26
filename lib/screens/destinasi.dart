@@ -61,25 +61,25 @@ class DestinasiPage extends StatelessWidget {
                   child: Row(
                     children: [
                       _buildLargeCard(
-                        'assets/img/airport.jpeg',
+                        'assets/img/airport.webp',
                         'Zayed International Airport',
                         'Abu Dhabi, UEA',
                       ),
                       const SizedBox(width: 15),
                       _buildLargeCard(
-                        'assets/img/mosque.jpeg',
+                        'assets/img/mosque.webp',
                         'Sheikh Zayed Grand Mosque',
                         'Abu Dhabi, UEA',
                       ),
                       const SizedBox(width: 15),
                       _buildLargeCard(
-                        'assets/img/burj_khalifa.jpeg',
+                        'assets/img/burj_khalifa.webp',
                         'Burj Khalifa',
                         'Dubai, UEA',
                       ),
                       const SizedBox(width: 15),
                       _buildLargeCard(
-                        'assets/img/gurunnanak.jpeg',
+                        'assets/img/gurunnanak.webp',
                         'Gurun Nanak Darbar Sikh Temple',
                         'Abu Dhabi, UEA',
                       ),
@@ -99,11 +99,11 @@ class DestinasiPage extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   child: Row(
                     children: [
-                      _buildSmallCard('assets/img/mosque.jpeg'),
+                      _buildSmallCard('assets/img/mosque.webp'),
                       const SizedBox(width: 15),
-                      _buildSmallCard('assets/img/burj_khalifa.jpeg'),
+                      _buildSmallCard('assets/img/burj_khalifa.webp'),
                       const SizedBox(width: 15),
-                      _buildSmallCard('assets/img/mosque.jpeg'),
+                      _buildSmallCard('assets/img/mosque.webp'),
                     ],
                   ),
                 ),
@@ -121,7 +121,7 @@ class DestinasiPage extends StatelessWidget {
       height: 320,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+        image: DecorationImage(image: ResizeImage(AssetImage(imagePath), width: 440, height: 640), fit: BoxFit.cover)
       ),
       child: Stack(
         children: [
