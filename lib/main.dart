@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mirae/screens/dashboard.dart';
 import 'package:mirae/screens/destinasi.dart';
 import 'package:mirae/screens/nature.dart';
@@ -8,11 +7,6 @@ import 'package:mirae/screens/biography.dart';
 import 'package:mirae/screens/global_values.dart';
 
 void main() async {
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
   runApp(const MyApp());
 }
 

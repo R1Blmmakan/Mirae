@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeView extends StatefulWidget {
-
   const HomeView({super.key});
 
   @override
@@ -25,14 +24,18 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (_pageController.hasClients) {
-        _currentPage = (_currentPage + 1) % _bannerImages.length;
-        _pageController.animateToPage(
-          _currentPage,
-          duration: const Duration(milliseconds: 800),
-          curve: Curves.easeInOut,
-        );
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      if (mounted) {
+        _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+          if (_pageController.hasClients) {
+            _currentPage = (_currentPage + 1) % _bannerImages.length;
+            _pageController.animateToPage(
+              _currentPage,
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeInOut,
+            );
+          }
+        });
       }
     });
   }
@@ -75,44 +78,76 @@ class _HomeViewState extends State<HomeView> {
                     height: 35,
                     errorBuilder: (context, _, _) => const Text(
                       "MIRAE",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ClipPath(
-                    clipper: PhotoFrameClipper(),
-                    child: SizedBox(
-                      height: 200,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: _bannerImages.length,
-                        itemBuilder: (context, index) {
-                          return Stack(
-                            children: [
-                              Positioned.fill(
-                                child: Image.asset(
-                                  _bannerImages[index],
-                                  fit: BoxFit.cover,
-                                  cacheWidth: 1000,
+                  RepaintBoundary(
+                    child: ClipPath(
+                      clipper: PhotoFrameClipper(),
+                      child: SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: PageView.builder(
+                          controller: _pageController,
+                          itemCount: _bannerImages.length,
+                          itemBuilder: (context, index) {
+                            return Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: Image.asset(
+                                    _bannerImages[index],
+                                    fit: BoxFit.cover,
+                                    cacheWidth: 850,
+                                  ),
                                 ),
-                              ),
-                              const Positioned(
-                                left: 25,
-                                top: 50,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text("Visit", style: TextStyle(color: Colors.white, fontSize: 24, fontFamily: 'Serif', height: 1.0)),
-                                    Text("United Arab", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Serif', height: 1.1)),
-                                    Text("Emirates", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Serif', height: 1.1)),
-                                  ],
+                                const Positioned(
+                                  left: 25,
+                                  top: 50,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "Visit",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24,
+                                          fontFamily: 'Serif',
+                                          height: 1.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        "United Arab",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Serif',
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Emirates",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Serif',
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -127,30 +162,71 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 25),
-              const Text('Category', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Category',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _categoryItem('assets/icons/nature.svg', 'Nature', const Color(0xFF4CAF50), onTap: () => Navigator.pushNamed(context, '/nature')),
-                  _categoryItem('assets/icons/culture.svg', 'Culture', const Color(0xFFE53935), onTap: () => Navigator.pushNamed(context, '/culture')),
-                  _categoryItem('assets/icons/biography.svg', 'Biography', const Color(0xFFFB8C00), onTap: () => Navigator.pushNamed(context, '/biography')),
-                  _categoryItem('assets/icons/global-values.svg', 'Global Values', const Color(0xFF00897B), onTap: () => Navigator.pushNamed(context, '/global_values')),
+                  _categoryItem(
+                    'assets/icons/nature.svg',
+                    'Nature',
+                    const Color(0xFF4CAF50),
+                    onTap: () => Navigator.pushNamed(context, '/nature'),
+                  ),
+                  _categoryItem(
+                    'assets/icons/culture.svg',
+                    'Culture',
+                    const Color(0xFFE53935),
+                    onTap: () => Navigator.pushNamed(context, '/culture'),
+                  ),
+                  _categoryItem(
+                    'assets/icons/biography.svg',
+                    'Biography',
+                    const Color(0xFFFB8C00),
+                    onTap: () => Navigator.pushNamed(context, '/biography'),
+                  ),
+                  _categoryItem(
+                    'assets/icons/global-values.svg',
+                    'Global Values',
+                    const Color(0xFF00897B),
+                    onTap: () => Navigator.pushNamed(context, '/global_values'),
+                  ),
                 ],
               ),
               const SizedBox(height: 35),
-              const Text('WORLD MAP NAVIGATION', style: TextStyle(color: Color(0xFF8E8E8E), fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.5)),
+              const Text(
+                'WORLD MAP NAVIGATION',
+                style: TextStyle(
+                  color: Color(0xFF8E8E8E),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.5,
+                ),
+              ),
               const SizedBox(height: 15),
               AspectRatio(
                 aspectRatio: 1.5,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 5))],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: Image.asset('assets/img/map.webp', fit: BoxFit.cover),
+                    child: Image.asset(
+                      'assets/img/map.webp',
+                      fit: BoxFit.cover,
+                      cacheWidth: 700,
+                    ),
                   ),
                 ),
               ),
@@ -162,7 +238,12 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget _categoryItem(String iconPath, String label, Color color, {VoidCallback? onTap}) {
+  Widget _categoryItem(
+    String iconPath,
+    String label,
+    Color color, {
+    VoidCallback? onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -174,10 +255,22 @@ class _HomeViewState extends State<HomeView> {
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: color, width: 1.5),
             ),
-            child: SvgPicture.asset(iconPath, width: 24, height: 24, colorFilter: ColorFilter.mode(color, BlendMode.srcIn)),
+            child: SvgPicture.asset(
+              iconPath,
+              width: 24,
+              height: 24,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+            ),
           ),
           const SizedBox(height: 8),
-          Text(label, style: const TextStyle(color: Colors.black87, fontSize: 11, fontWeight: FontWeight.w500)),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.black87,
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
@@ -204,6 +297,7 @@ class PhotoFrameClipper extends CustomClipper<Path> {
     path.close();
     return path;
   }
+
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

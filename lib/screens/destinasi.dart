@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class DestinasiPage extends StatelessWidget {
+class DestinasiPage extends StatefulWidget {
   const DestinasiPage({super.key});
+
+  @override
+  State<DestinasiPage> createState() => _DestinasiPageState();
+}
+
+class _DestinasiPageState extends State<DestinasiPage> {
+  bool _isReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 350), () {
+      if (mounted) {
+        setState(() {
+          _isReady = true;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +58,6 @@ class DestinasiPage extends StatelessWidget {
               ),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
@@ -54,37 +72,27 @@ class DestinasiPage extends StatelessWidget {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
-
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Row(
-                    children: [
-                      _buildLargeCard(
-                        'assets/img/airport.webp',
-                        'Zayed International Airport',
-                        'Abu Dhabi, UEA',
+                
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 400),
+                  child: !_isReady 
+                    ? const SizedBox(height: 320) 
+                    : SingleChildScrollView(
+                        key: const ValueKey('heavy_content_1'),
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: [
+                            _buildLargeCard('assets/img/airport.webp', 'Zayed International Airport', 'Abu Dhabi, UEA'),
+                            const SizedBox(width: 15),
+                            _buildLargeCard('assets/img/mosque.webp', 'Sheikh Zayed Grand Mosque', 'Abu Dhabi, UEA'),
+                            const SizedBox(width: 15),
+                            _buildLargeCard('assets/img/burj_khalifa.webp', 'Burj Khalifa', 'Dubai, UEA'),
+                            const SizedBox(width: 15),
+                            _buildLargeCard('assets/img/gurunnanak.webp', 'Gurun Nanak Darbar Sikh Temple', 'Abu Dhabi, UEA'),
+                          ],
+                        ),
                       ),
-                      const SizedBox(width: 15),
-                      _buildLargeCard(
-                        'assets/img/mosque.webp',
-                        'Sheikh Zayed Grand Mosque',
-                        'Abu Dhabi, UEA',
-                      ),
-                      const SizedBox(width: 15),
-                      _buildLargeCard(
-                        'assets/img/burj_khalifa.webp',
-                        'Burj Khalifa',
-                        'Dubai, UEA',
-                      ),
-                      const SizedBox(width: 15),
-                      _buildLargeCard(
-                        'assets/img/gurunnanak.webp',
-                        'Gurun Nanak Darbar Sikh Temple',
-                        'Abu Dhabi, UEA',
-                      ),
-                    ],
-                  ),
                 ),
 
                 const SizedBox(height: 30),
@@ -94,18 +102,24 @@ class DestinasiPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
 
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Row(
-                    children: [
-                      _buildSmallCard('assets/img/mosque.webp'),
-                      const SizedBox(width: 15),
-                      _buildSmallCard('assets/img/burj_khalifa.webp'),
-                      const SizedBox(width: 15),
-                      _buildSmallCard('assets/img/mosque.webp'),
-                    ],
-                  ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  child: !_isReady
+                    ? const SizedBox(height: 100)
+                    : SingleChildScrollView(
+                        key: const ValueKey('heavy_content_2'),
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: [
+                            _buildSmallCard('assets/img/mosque.webp'),
+                            const SizedBox(width: 15),
+                            _buildSmallCard('assets/img/burj_khalifa.webp'),
+                            const SizedBox(width: 15),
+                            _buildSmallCard('assets/img/mosque.webp'),
+                          ],
+                        ),
+                      ),
                 ),
               ],
             ),
@@ -116,154 +130,89 @@ class DestinasiPage extends StatelessWidget {
   }
 
   Widget _buildLargeCard(String imagePath, String title, String location) {
-    return Container(
-      width: 220,
-      height: 320,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        image: DecorationImage(image: ResizeImage(AssetImage(imagePath), width: 440, height: 640), fit: BoxFit.cover)
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            bottom: 15,
-            left: 15,
-            right: 15,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.3),
-                      width: 1.5,
+    return RepaintBoundary(
+      child: Container(
+        width: 220,
+        height: 320,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          image: DecorationImage(
+            image: ResizeImage(AssetImage(imagePath), width: 440, height: 640), 
+            fit: BoxFit.cover
+          ),
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 15,
+              left: 15,
+              right: 15,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
                             color: Colors.white,
-                            size: 12,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           ),
-                          const SizedBox(width: 4),
-                          Text(
-                            location,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
+                        ),
+                        const SizedBox(height: 6),
+                        Row(
+                          children: [
+                            const Icon(Icons.location_on, color: Colors.white, size: 12),
+                            const SizedBox(width: 4),
+                            Text(
+                              location,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildSmallCard(String imagePath) {
-    return Container(
-      width: 150,
-      height: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+    return RepaintBoundary(
+      child: Container(
+        width: 150,
+        height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: ResizeImage(AssetImage(imagePath), width: 300, height: 200),
+            fit: BoxFit.cover
+          ),
+        ),
       ),
     );
   }
 }
-
-Widget buildLargeCard(String imagePath, String title, String location) {
-  return Container(
-    width: 200,
-    height: 300,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(25),
-      image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
-    ),
-    child: Stack(
-      children: [
-        Positioned(
-          bottom: 15,
-          left: 15,
-          right: 15,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.3),
-                    width: 1.5,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                          size: 12,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          location,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-
-
