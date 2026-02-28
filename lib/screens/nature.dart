@@ -94,30 +94,55 @@ class NaturePage extends StatelessWidget {
             
 
 
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      "More Nature",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+            Center(
+              child: Container(
+                width: 216,
+                height: 46,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFFFFDC52), // Hijau (atas)
+                      Color(0xFFFFDC52), // Hijau tetap
+                      Color(0xFF263535), // Kuning (bawah)
+                      Color(0xFFF4C430), // Kuning tetap
+                    ],
+                    stops: [0.0, 0.5, 0.5, 1.0], // 🔥 ini bikin setengah-setengah
                   ),
+                ),
+                child: const Text(
+                  "BORDERLINE",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                  ),
+                ),
+              ),
+            ),
             
                   const SizedBox(height: 15),
             
                   SizedBox(
                     height: 425,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: PageView(
+                      padEnds: false,
+                      controller: PageController(viewportFraction: 0.8),
                       children: [
-                        _buildSmallCard('assets/img/mosque.webp', 'Mosque'),
-                        _buildSmallCard('assets/img/burj_khalifa.webp', 'Burj Khalifa'),
-                        _buildSmallCard('assets/img/airport.webp', 'Airport'),
-                        _buildSmallCard('assets/img/mosque.webp', 'Mosque'),
-                        _buildSmallCard('assets/img/burj_khalifa.webp', 'Burj Khalifa'),
+                        _buildSmallCard(context,'assets/img/mosque.webp', 'Mosque',
+                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
+                        _buildSmallCard(context,'assets/img/burj_khalifa.webp', 'Burj Khalifa',
+                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
+                        _buildSmallCard(context,'assets/img/airport.webp', 'Airport',
+                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
+                        _buildSmallCard(context,'assets/img/mosque.webp', 'Mosque',
+                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
+                        _buildSmallCard(context,'assets/img/burj_khalifa.webp', 'Burj Khalifa',
+                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
                       ],
                     ),
                   ),
@@ -130,60 +155,82 @@ class NaturePage extends StatelessWidget {
     );
   }
 
-static Widget _buildSmallCard(String image, String title) {
-  return Container(
+static Widget _buildSmallCard(
+  BuildContext context,
+  String image,
+  String title,
+  String description,
+) {
+  return SizedBox(
     width: 300,
-    margin: const EdgeInsets.only(right: 15),
-    child: Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
-            image,
-            height: double.infinity,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-        ),
-
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.7),
-                ],
-              ),
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DetailImagePage(
+              image: image,
+              title: title,
+              description: description,
             ),
           ),
-        ),
-
-        Positioned(
-          bottom: 10,
-          left: 12,
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 15),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(32),
+              child: Image.asset(
+                image,
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
+
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(20),
+                  ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.7),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Positioned(
+              bottom: 10,
+              left: 12,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     ),
   );
 }
+
 
 static Widget _buildLargeCard(BuildContext context, String image) {
   return Stack(
@@ -289,4 +336,149 @@ static Widget _buildLargeCard(BuildContext context, String image) {
     ],
   );
 }
+}
+
+
+class DetailImagePage extends StatelessWidget {
+  final String image;
+  final String title;
+  final String description;
+
+  const DetailImagePage({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+
+          /// Background Image
+          Positioned.fill(
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          /// Gradient Atas
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 180,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.6),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          /// Back Button
+          Positioned(
+            top: 50,
+            left: 20,
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.4),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+            ),
+          ),
+
+          /// Title Atas
+          Positioned(
+            top: 60,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          /// Bottom Glass Card
+          Positioned(
+            bottom: 40,
+            left: 20,
+            right: 20,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.35),
+                    Colors.black.withOpacity(0.35),
+                  ],
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+
+                  const Text(
+                    "Gulf Of Oman",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  Container(
+                    height: 2,
+                    width: double.infinity,
+                    color: Colors.white,
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  Text(
+                    description,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      height: 1.6,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
