@@ -110,7 +110,7 @@ class NaturePage extends StatelessWidget {
                       Color(0xFF263535), // Kuning (bawah)
                       Color(0xFFF4C430), // Kuning tetap
                     ],
-                    stops: [0.0, 0.5, 0.5, 1.0], // 🔥 ini bikin setengah-setengah
+                    stops: [0.0, 0.5, 0.5, 1.0], 
                   ),
                 ),
                 child: const Text(
