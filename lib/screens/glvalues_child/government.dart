@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GlobalValues extends StatelessWidget {
-  const GlobalValues({super.key});
+class GovernmentPage extends StatelessWidget {
+  const GovernmentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class GlobalValues extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Global Values",
+                  "Government",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -26,7 +26,6 @@ class GlobalValues extends StatelessWidget {
               ),
             ),
 
-            // White Rounded Container
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
@@ -44,7 +43,7 @@ class GlobalValues extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              "assets/img/quran.webp",
+                              "assets/img/government.webp",
                               height: 200,
                               width: double.infinity,
                               fit: BoxFit.cover,
@@ -91,7 +90,7 @@ class GlobalValues extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          "Language",
+                          "Government",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -100,14 +99,14 @@ class GlobalValues extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 10),
-                      
+
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          "The official language of the UAE is Arabic. "
-                          "English is widely used in daily communication, "
-                          "business, education, and tourism. Other languages "
-                          "such as Hindi, Urdu, and Tagalog are also commonly spoken.",
+                          "The United Arab Emirates has a federal monarchy system."
+                          "It consists of seven emirates."
+                          "The country is led by a President, usually the ruler of Abu Dhabi, and a Prime Minister, usually the ruler of Dubai."
+                          "Each emirate has its own ruler and local government, but they work together under the federal system.",
                           style: TextStyle(height: 1.5),
                         ),
                       ),
@@ -135,9 +134,17 @@ class GlobalValues extends StatelessWidget {
                                 },
                               ),
                             ),
+                            Expanded(
+                              child: _ImageCard(
+                                imagePath: "assets/img/quran.webp",
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/global_values');
+                                },
+                              ),
+                            ),
                           ],
                         ),
-                      ),
+                      ),  
 
                       const SizedBox(height: 40),
                     ],

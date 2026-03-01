@@ -5,6 +5,8 @@ import 'package:mirae/screens/nature.dart';
 import 'package:mirae/screens/culture.dart';
 import 'package:mirae/screens/biography.dart';
 import 'package:mirae/screens/global_values.dart';
+import 'package:mirae/screens/glvalues_child/government.dart';
+import 'package:mirae/screens/glvalues_child/currency.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
         '/culture': (context) => const CulturePage(),
         '/biography': (context) => const BiographyPage(),
         '/global_values': (context) => const GlobalValues(),
+        '/government': (context) => const GovernmentPage(),
+        '/currency': (context) => const CurrencyPage(),
       },
     );
   }
