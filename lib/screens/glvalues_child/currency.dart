@@ -42,7 +42,7 @@ class CurrencyPage extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              "assets/img/currency.webp",
+                              "assets/img/dirham.webp",
                               height: 200,
                               width: double.infinity,
                               fit: BoxFit.cover,
