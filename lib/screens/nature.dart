@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class NaturePage extends StatelessWidget {
   const NaturePage({super.key});
@@ -105,10 +106,10 @@ class NaturePage extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFFFDC52), // Hijau (atas)
-                      Color(0xFFFFDC52), // Hijau tetap
-                      Color(0xFF263535), // Kuning (bawah)
-                      Color(0xFFF4C430), // Kuning tetap
+                      Color(0xFF263535), // Hijau (atas)
+                      Color(0xFF263535), // Hijau tetap
+                      Color(0xFFFFDC52), // Kuning (bawah)
+                      Color(0xFFFFDC52), // Kuning tetap
                     ],
                     stops: [0.0, 0.5, 0.5, 1.0], 
                   ),
@@ -141,7 +142,7 @@ class NaturePage extends StatelessWidget {
                         'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
                         _buildSmallCard(context,'assets/img/mosque.webp', 'Mosque',
                         'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
-                        _buildSmallCard(context,'assets/img/burj_khalifa.webp', 'Burj Khalifa',
+                        _buildSmallCard(context,'assets/img/wadi.webp', 'Wadi',
                         'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
                       ],
                     ),
@@ -205,7 +206,7 @@ static Widget _buildSmallCard(
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withValues(alpha: 0.7),
+                      Colors.black.withOpacity(0.7),
                     ],
                   ),
                 ),
@@ -213,14 +214,14 @@ static Widget _buildSmallCard(
             ),
 
             Positioned(
-              bottom: 10,
-              left: 12,
+              bottom: 20,
+              left: 20,
               child: Text(
                 title,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: 30,
                 ),
               ),
             ),
@@ -257,7 +258,7 @@ static Widget _buildLargeCard(BuildContext context, String image) {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha:0.7),
+          color: Colors.white.withOpacity(0.7),
           shape: BoxShape.circle,
         ),
         child: const Icon(
@@ -377,7 +378,7 @@ class DetailImagePage extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withValues(alpha: 0.6),
+                    Colors.black.withOpacity(0.6),
                     Colors.transparent,
                   ],
                 ),
@@ -394,7 +395,7 @@ class DetailImagePage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.4),
+                  color: Colors.black.withOpacity(0.4),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -425,55 +426,46 @@ class DetailImagePage extends StatelessWidget {
 
           /// Bottom Glass Card
           Positioned(
-            bottom: 40,
-            left: 20,
-            right: 20,
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withValues(alpha: 0.35),
-                    Colors.black.withValues(alpha: 0.35),
-                  ],
+            bottom: 60,
+            left: 40, 
+            right: 40,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  color: const Color(0x401D1D1D),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 2,
+                        width: double.infinity,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        description,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          height: 1.6,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-
-                  const Text(
-                    "Gulf Of Oman",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  Container(
-                    height: 2,
-                    width: double.infinity,
-                    color: Colors.white,
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  Text(
-                    description,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      height: 1.6,
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
