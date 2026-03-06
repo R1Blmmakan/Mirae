@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
-
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -24,18 +23,15 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      if (mounted) {
-        _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-          if (_pageController.hasClients) {
-            _currentPage = (_currentPage + 1) % _bannerImages.length;
-            _pageController.animateToPage(
-              _currentPage,
-              duration: const Duration(milliseconds: 800),
-              curve: Curves.easeInOut,
-            );
-          }
-        });
+
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (_pageController.hasClients) {
+        _currentPage = (_currentPage + 1) % _bannerImages.length;
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+        );
       }
     });
   }
@@ -49,124 +45,111 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        Stack(
-          children: [
-            Container(
-              height: 100,
+    return Scaffold(
+      body: Stack(
+        children: [
+
+          Container(
+            height: 150,
+            decoration: const BoxDecoration(
+              color: Color(0xFF9CAB84),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: 90,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
               decoration: const BoxDecoration(
-                color: Color(0xFFC5D1B5),
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40),
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top + 25,
-                left: 24,
-                right: 24,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/icons/logo.webp',
-                    height: 35,
-                    errorBuilder: (context, _, _) => const Text(
-                      "MIRAE",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  RepaintBoundary(
-                    child: ClipPath(
-                      clipper: PhotoFrameClipper(),
-                      child: SizedBox(
-                        height: 200,
-                        width: double.infinity,
-                        child: PageView.builder(
-                          controller: _pageController,
-                          itemCount: _bannerImages.length,
-                          itemBuilder: (context, index) {
-                            return Stack(
+          ),
+
+          ListView(
+            physics: const ClampingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(24, 120, 24, 0),
+            children: [
+
+              ClipPath(
+                clipper: PhotoFrameClipper(),
+                child: SizedBox(
+                  height: 200,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: _bannerImages.length,
+                    itemBuilder: (context, index) {
+                      return Stack(
+                        children: [
+
+                          Positioned.fill(
+                            child: Image.asset(
+                              _bannerImages[index],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+
+                          const Positioned(
+                            left: 25,
+                            top: 50,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Positioned.fill(
-                                  child: Image.asset(
-                                    _bannerImages[index],
-                                    fit: BoxFit.cover,
-                                    cacheWidth: 850,
+                                Text(
+                                  "Visit",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontFamily: 'Serif',
                                   ),
                                 ),
-                                const Positioned(
-                                  left: 25,
-                                  top: 50,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "Visit",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 24,
-                                          fontFamily: 'Serif',
-                                          height: 1.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "United Arab",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Serif',
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Emirates",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Serif',
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ],
+                                Text(
+                                  "United Arab",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Serif',
+                                  ),
+                                ),
+                                Text(
+                                  "Emirates",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Serif',
                                   ),
                                 ),
                               ],
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                ],
+                ),
               ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+
               const SizedBox(height: 25),
+
               const Text(
                 'Category',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+
               const SizedBox(height: 15),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -196,7 +179,9 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 35),
+
               const Text(
                 'WORLD MAP NAVIGATION',
                 style: TextStyle(
@@ -206,35 +191,34 @@ class _HomeViewState extends State<HomeView> {
                   letterSpacing: 1.5,
                 ),
               ),
+
               const SizedBox(height: 15),
+
               AspectRatio(
                 aspectRatio: 1.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: Image.asset(
-                      'assets/img/map.webp',
-                      fit: BoxFit.cover,
-                      cacheWidth: 700,
-                    ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.asset(
+                    'assets/img/map.webp',
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
+
               const SizedBox(height: 160),
             ],
           ),
-        ),
-      ],
+
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 10,
+            left: 24,
+            child: Image.asset(
+              'assets/icons/logo.webp',
+              height: 35,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -263,14 +247,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.black87,
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          Text(label, style: const TextStyle(fontSize: 11)),
         ],
       ),
     );
@@ -283,6 +260,7 @@ class PhotoFrameClipper extends CustomClipper<Path> {
     Path path = Path();
     double w = size.width;
     double h = size.height;
+
     path.moveTo(30, 0);
     path.lineTo(w - 30, 0);
     path.quadraticBezierTo(w, 0, w, 30);
@@ -294,6 +272,7 @@ class PhotoFrameClipper extends CustomClipper<Path> {
     path.quadraticBezierTo(0, h, 0, h - 30);
     path.lineTo(0, 30);
     path.quadraticBezierTo(0, 0, 30, 0);
+
     path.close();
     return path;
   }
