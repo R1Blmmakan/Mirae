@@ -3,6 +3,7 @@ import 'package:mirae/screens/dashboard.dart';
 import 'package:mirae/screens/destinasi.dart';
 import 'package:mirae/screens/nature.dart';
 import 'package:mirae/screens/culture.dart';
+import 'package:mirae/screens/aboutus.dart';
 import 'package:mirae/screens/biography.dart';
 import 'package:mirae/screens/global_values.dart';
 import 'package:mirae/screens/glvalues_child/government.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const Dashboard(),
         '/jelajahi': (context) => const DestinasiPage(),
+        '/aboutus': (context) => const AboutusPage(),
         '/nature': (context) => const NaturePage(),
         '/culture': (context) => const CulturePage(),
         '/biography': (context) => const BiographyPage(),
