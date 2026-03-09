@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'destinasi.dart';
+import 'aboutus.dart';
 import 'package:mirae/anim_logic/home_view.dart';
-import 'package:mirae/screens/aboutus.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -39,7 +39,7 @@ class _DashboardState extends State<Dashboard> {
                 ? const HomeView()
                 : _selectedIndex == 1
                     ? const DestinasiPage()
-                    : const AboutusPage(),
+                    : const AboutusPage()
                         
             ),
           ),
