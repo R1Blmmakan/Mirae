@@ -11,14 +11,130 @@ class _AboutusPageState extends State<AboutusPage> {
 
   String selectedMajor = "PPLG";
 
+  final Map<String, List<Map<String, String>>> members = {
+
+    "PPLG": [
+      {
+        "image": "assets/img/abs/fikri.webp",
+        "name": "R. Wan Fikri Pricahyadi",
+        "role": "Leader, Mobile Dev",
+      },
+      {
+        "image": "assets/img/abs/leon.webp",
+        "name": "Leon Manuel Nadeak",
+        "role": "Web Dev",
+      },
+      {
+        "image": "assets/img/abs/tamam.webp",
+        "name": "Ghani Bahrut Tamam",
+        "role": "UI/UX",
+      },
+      {
+        "image": "assets/img/abs/derren.webp",
+        "name": "Darren Raisya Iqbal",
+        "role": "UI/UX",
+      },
+      {
+        "image": "assets/img/abs/patur.webp",
+        "name": "Patur Marcelio Limbong",
+        "role": "Mobile Dev",
+      },
+      {
+        "image": "assets/img/abs/fransisico.webp",
+        "name": "Fransisco Valentino",
+        "role": "Mobile Dev",
+      },
+      {
+        "image": "assets/img/abs/josua.webp",
+        "name": "Riski Josuwa",
+        "role": "Member",
+      },
+    ],
+      
+
+    "DKV": [
+      {
+        "image": "assets/img/member3.jpg",
+        "name": "Rizky",
+        "role": "Graphic Designer",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Aldo",
+        "role": "Illustrator",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Aldo",
+        "role": "Illustrator",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Aldo",
+        "role": "Illustrator",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Aldo",
+        "role": "Illustrator",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Aldo",
+        "role": "Illustrator",
+      },
+    ],
+
+    "CULINARY": [
+      {
+        "image": "assets/img/member2.jpg",
+        "name": "Chef Budi",
+        "role": "Head Chef",
+      },
+      {
+        "image": "assets/img/member3.jpg",
+        "name": "Rama",
+        "role": "Pastry Chef",
+      },
+    ],
+
+    "HOSPITALITY": [
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Nadia",
+        "role": "Front Office",
+      },
+      {
+        "image": "assets/img/member2.jpg",
+        "name": "Andre",
+        "role": "Guest Service",
+      },
+    ],
+
+    "BUSINESS": [
+      {
+        "image": "assets/img/member3.jpg",
+        "name": "Kevin",
+        "role": "Marketing",
+      },
+      {
+        "image": "assets/img/member4.jpg",
+        "name": "Farhan",
+        "role": "Business Analyst",
+      },
+    ],
+  };
+
   @override
   Widget build(BuildContext context) {
+
+    final currentMembers = members[selectedMajor] ?? [];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
 
-          // HEADER HIJAU
           Container(
             height: 150,
             decoration: const BoxDecoration(
@@ -30,7 +146,6 @@ class _AboutusPageState extends State<AboutusPage> {
             ),
           ),
 
-          // CONTENT
           ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -68,7 +183,6 @@ class _AboutusPageState extends State<AboutusPage> {
 
                     const SizedBox(height: 20),
 
-                    // CHIP JURUSAN SCROLL
                     SizedBox(
                       height: 40,
                       child: ListView(
@@ -89,7 +203,6 @@ class _AboutusPageState extends State<AboutusPage> {
                           const SizedBox(width: 10),
 
                           _chip("BUSINESS"),
-
                         ],
                       ),
                     ),
@@ -104,13 +217,38 @@ class _AboutusPageState extends State<AboutusPage> {
                       ),
                     ),
 
+                    const SizedBox(height: 20),
+
+                    GridView.builder(
+                      itemCount: currentMembers.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) {
+
+                        final member = currentMembers[index];
+
+                        return _memberCard(
+                          member["image"]!,
+                          member["name"]!,
+                          member["role"]!,
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 40,)
+
                   ],
                 ),
               ),
             ],
           ),
 
-          // JUDUL ABOUT US DI ATAS
           Padding(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + 20,
@@ -130,28 +268,83 @@ class _AboutusPageState extends State<AboutusPage> {
     );
   }
 
-  Widget _chip(String text) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedMajor = text;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey.shade300),
-        ),
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
+Widget _chip(String text) {
+
+  bool isSelected = selectedMajor == text;
+
+  return GestureDetector(
+    onTap: () {
+      setState(() {
+        selectedMajor = text;
+      });
+    },
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(
+        color: isSelected
+            ? const Color(0xFF9CAB84)
+            : Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isSelected
+              ? const Color(0xFF9CAB84)
+              : Colors.grey.shade300,
         ),
       ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          
+
+          const SizedBox(width: 6),
+
+          Text(
+            text,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.black,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+  Widget _memberCard(String image, String name, String role) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(
+            image,
+            height: 140,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+
+        const SizedBox(height: 10),
+
+        Text(
+          name,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+
+        Text(
+          role,
+          style: const TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+
+      ],
     );
   }
 }
