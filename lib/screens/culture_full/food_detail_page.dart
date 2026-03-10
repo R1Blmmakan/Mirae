@@ -109,7 +109,7 @@ class FoodDetailPage extends StatelessWidget {
                       filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
                       child: Container(
                         padding: const EdgeInsets.all(16),
-                        color: Color(0xFF1D1D1D).withOpacity(0.35),
+                        color: Color(0xFF1D1D1D).withValues(alpha: 0.35),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -185,7 +185,7 @@ class FoodDetailPage extends StatelessWidget {
                   const SizedBox(height: 30),
 
                   Text(
-                    "MAKE ${title.toUpperCase()} "+ category,
+                    "MAKE ${title.toUpperCase()} $category",
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -219,7 +219,7 @@ Widget _infoCard(String title, String text) {
       borderRadius: BorderRadius.circular(15),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.4),
+          color: Colors.black.withValues(alpha: 0.4),
           blurRadius: 3,
           offset: const Offset(0, 6),
         ),
@@ -277,7 +277,7 @@ Widget _nutritionCard(String title, String text) {
       borderRadius: BorderRadius.circular(15),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.10),
+          color: Colors.black.withValues(alpha: 0.10),
           blurRadius: 8,
           offset: const Offset(0, 4),
         ),
@@ -424,7 +424,7 @@ Widget _nutritionCard(String title, String text) {
             border: Border.all(color: Color(0xFFF5F5F5)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.15),
+                color: Colors.black.withValues(alpha: 0.15),
                 blurRadius: 10,
                 offset: const Offset(0, 5),
               ),

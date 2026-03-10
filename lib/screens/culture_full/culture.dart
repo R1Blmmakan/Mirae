@@ -132,7 +132,7 @@ class _CulturePageState extends State<CulturePage> {
                                 vertical: 6,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.25),
+                                color: Colors.white.withValues(alpha: 0.25),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: const Text(
@@ -196,7 +196,7 @@ class _CulturePageState extends State<CulturePage> {
                                 vertical: 9,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.25),
+                                color: Colors.white.withValues(alpha: 0.25),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: const Text(
@@ -289,7 +289,7 @@ class _CulturePageState extends State<CulturePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "About " + foodTitle,
+                          "About  $foodTitle",
                           style: const TextStyle(
                             fontSize: 20,
                             color: Color(0xFF947D49),
@@ -552,7 +552,7 @@ class _CulturePageState extends State<CulturePage> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               blurRadius: 1,
               offset: const Offset(0,5), 
             ),
@@ -647,7 +647,7 @@ Widget _clothingCard(
             ),
 
             Container(
-              color: Colors.black.withOpacity(0.25),
+              color: Colors.black.withValues(alpha: 0.25),
             ),
 
             Text(
