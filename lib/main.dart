@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mirae/screens/dashboard.dart';
 import 'package:mirae/screens/destinasi.dart';
 import 'package:mirae/screens/nature.dart';
@@ -10,6 +11,7 @@ import 'package:mirae/screens/glvalues_child/government.dart';
 import 'package:mirae/screens/glvalues_child/currency.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -18,20 +20,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mirae App',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
-      routes: {
-        '/home': (context) => const Dashboard(),
-        '/jelajahi': (context) => const DestinasiPage(),
-        '/aboutus': (context) => const AboutusPage(),
-        '/nature': (context) => const NaturePage(),
-        '/culture': (context) => const CulturePage(),
-        '/biography': (context) => const BiographyPage(),
-        '/global_values': (context) => const GlobalValues(),
-        '/government': (context) => const GovernmentPage(),
-        '/currency': (context) => const CurrencyPage(),
+    return ScreenUtilInit(
+      designSize: const Size(417, 912),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Mirae App',
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/home',
+          routes: {
+            '/home': (context) => const Dashboard(),
+            '/jelajahi': (context) => const DestinasiPage(),
+            '/aboutus': (context) => const AboutusPage(),
+            '/nature': (context) => const NaturePage(),
+            '/culture': (context) => const CulturePage(),
+            '/biography': (context) => const BiographyPage(),
+            '/global_values': (context) => const GlobalValues(),
+            '/government': (context) => const GovernmentPage(),
+            '/currency': (context) => const CurrencyPage(),
+          },
+        );
       },
     );
   }
