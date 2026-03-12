@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'detail_destinasi_page.dart';
 import 'detail_paket_page.dart';
 
@@ -350,7 +349,7 @@ Widget _buildSmallCard(String image, String title, String location, String descr
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.black.withOpacity(0.5),
+                  Colors.black.withValues(alpha: 0.5),
                   Colors.transparent
                 ],
                 begin: Alignment.topCenter,
@@ -441,7 +440,7 @@ Widget _buildPackageCard(
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             colors: [
-              Colors.black.withOpacity(0.6),
+              Colors.black.withValues(alpha: 0.6),
               Colors.transparent,
             ],
             begin: Alignment.bottomCenter,
