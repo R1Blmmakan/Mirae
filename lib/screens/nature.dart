@@ -134,16 +134,45 @@ class NaturePage extends StatelessWidget {
                       padEnds: false,
                       controller: PageController(viewportFraction: 0.8),
                       children: [
-                        _buildSmallCard(context,'assets/img/mosque.webp', 'Mosque',
-                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
-                        _buildSmallCard(context,'assets/img/burj_khalifa.webp', 'Burj Khalifa',
-                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
-                        _buildSmallCard(context,'assets/img/airport.webp', 'Airport',
-                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
-                        _buildSmallCard(context,'assets/img/mosque.webp', 'Mosque',
-                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
-                        _buildSmallCard(context,'assets/img/wadi.webp', 'Wadi',
-                        'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).'),
+                        _buildSmallCard(
+                            context,
+                            'assets/img/gulf.webp',
+                            'Gulf Of Oman',
+                            'Marine',
+                            'The Gulf of Oman is a small sea that connects the Persian Gulf to the Arabian Sea (Indian Ocean).',
+                          ),
+                          
+                          _buildSmallCard(
+                            context,
+                            'assets/img/rub.webp',
+                            'Rub Al Khali',
+                            'Desert',
+                            'Rub al Khali is one of the largest sand deserts in the world, also known as the Empty Quarter.',
+                          ),
+                          
+                          _buildSmallCard(
+                            context,
+                            'assets/img/jebel.webp',
+                            'Jebel Jais',
+                            'Montains',
+                            'Jebel Jais is the highest mountain in the United Arab Emirates, located in Ras Al Khaimah.',
+                          ),
+
+                          _buildSmallCard(
+                            context,
+                            'assets/img/oasis.webp',
+                            'Ai In Oasis',
+                            'Oasis',
+                            'Al Ain Oasis is a large natural oasis located in Al Ain city, Abu Dhabi.',
+                          ),
+
+                          _buildSmallCard(
+                            context,
+                            'assets/img/wadi.webp',
+                            'Wadi Wuraya',
+                            'Wadi',
+                            'Wadi Wurayah is a protected natural valley located in Fujairah, United Arab Emirates.',
+                          ),
                       ],
                     ),
                   ),
@@ -160,6 +189,7 @@ static Widget _buildSmallCard(
   BuildContext context,
   String image,
   String title,
+  String topTitle,
   String description,
 ) {
   return SizedBox(
@@ -171,6 +201,7 @@ static Widget _buildSmallCard(
           MaterialPageRoute(
             builder: (_) => DetailImagePage(
               image: image,
+              topTitle: topTitle,
               title: title,
               description: description,
             ),
@@ -217,7 +248,7 @@ static Widget _buildSmallCard(
               bottom: 20,
               left: 20,
               child: Text(
-                title,
+                topTitle,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -292,6 +323,7 @@ static Widget _buildLargeCard(BuildContext context, String image) {
               ),
               child: Text(
                 description,
+                textAlign: TextAlign.justify,
                 style: const TextStyle(
                   fontSize: 14,
                   height: 1.5,
@@ -299,7 +331,6 @@ static Widget _buildLargeCard(BuildContext context, String image) {
               ),
             ),
 
-      /// Label Kuning
       Positioned(
         top: -5,
         left: circleLeft ? 25 : null,
@@ -320,7 +351,6 @@ static Widget _buildLargeCard(BuildContext context, String image) {
         ),
       ),
 
-      /// Bulatan Hitam
       Positioned(
         top: -10,
         left: circleLeft ? 0 : null,
@@ -343,12 +373,14 @@ static Widget _buildLargeCard(BuildContext context, String image) {
 class DetailImagePage extends StatelessWidget {
   final String image;
   final String title;
+  final String topTitle;
   final String description;
 
   const DetailImagePage({
     super.key,
     required this.image,
     required this.title,
+    required this.topTitle,
     required this.description,
   });
 
@@ -358,7 +390,6 @@ class DetailImagePage extends StatelessWidget {
       body: Stack(
         children: [
 
-          /// Background Image
           Positioned.fill(
             child: Image.asset(
               image,
@@ -366,7 +397,22 @@ class DetailImagePage extends StatelessWidget {
             ),
           ),
 
-          /// Gradient Atas
+          Positioned(
+            top: 60,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                topTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
           Positioned(
             top: 0,
             left: 0,
@@ -386,7 +432,6 @@ class DetailImagePage extends StatelessWidget {
             ),
           ),
 
-          /// Back Button
           Positioned(
             top: 50,
             left: 20,
@@ -407,14 +452,13 @@ class DetailImagePage extends StatelessWidget {
             ),
           ),
 
-          /// Title Atas
           Positioned(
             top: 60,
             left: 0,
             right: 0,
             child: Center(
               child: Text(
-                title,
+                topTitle,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -424,7 +468,6 @@ class DetailImagePage extends StatelessWidget {
             ),
           ),
 
-          /// Bottom Glass Card
           Positioned(
             bottom: 60,
             left: 40, 

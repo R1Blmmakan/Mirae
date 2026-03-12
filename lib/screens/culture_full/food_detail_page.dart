@@ -212,7 +212,7 @@ class FoodDetailPage extends StatelessWidget {
 
 Widget _infoCard(String title, String text) {
   return Container(
-    height: 150,
+    height: 170,
     width: 168,
     decoration: BoxDecoration(
       color: Colors.white,
@@ -307,7 +307,6 @@ Widget _nutritionCard(String title, String text) {
   Widget buildNutritionList(List<Widget> items) {
   List<Widget> rows = [];
 
-  // Loop 2 item per baris
   for (int i = 0; i < items.length; i += 2) {
     if (i == items.length - 1) {
       rows.add(Row(

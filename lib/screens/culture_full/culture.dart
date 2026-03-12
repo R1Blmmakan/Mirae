@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'clothing_detail_page.dart';
@@ -239,6 +240,10 @@ class _CulturePageState extends State<CulturePage> {
                                 {"title": "Onion", "text": "Protein 2g, Carbohydrates 14 g, Vit C, Fiber, Antioxidant."},
                                 {"title": "Seasoning & Lemon", "text": "Carbohydrates, Iron, Antioxidant."},
                               ];
+                              foodCategory = "food";
+                              foodCalories = "The total calories of Samboosa range from about 1,600–1,700 kcal. The ingredients include ground meat (about 890 kcal), potatoes (about 230 kcal), onions (about 70 kcal), wheat flour (about 364 kcal), lemon and thyme (about 10 kcal), plain yogurt (about 60 kcal), and spices (about 15 kcal). This food is rich in energy because it contains protein, carbohydrates, and fats that provide a savory and satisfying taste.";
+                              foodIngredients = "DOUGH:\n• 360 g medium-protein wheat flour\n• 200 ml water\n• 3 g salt\n• ½ lemon\n\nFILLING:\n• 350 g ground beef\n• 2 potatoes\n• 1 onion\n• 3 cloves garlic\n• 2 g grated ginger\n• 11 g curry powder\n• 10 g cumin powder\n• 6 g coriander powder\n• 6 g salt\n• 6 g black pepper\n• Coriander leaves and green onions to taste\n\nLEMON DILL YOGHURT SAUCE:\n• 100 g yogurt\n• 3 ml lemon juice\n• 2 g thyme\n• Salt\n• Black pepper";
+                              foodHowToMake = "DOUGH:\n• Mix the flour, salt, and lemon juice, then stir well. Add water little by little so the dough is not too wet. If it becomes too wet, add more flour while mixing.\n• Knead the dough until smooth, then let it rest for about 15–20 minutes. Make sure it is covered with a cloth or plastic.\n• Divide it into balls of 30–45 grams. Roll each dough ball thinly into a round shape.\n• Stack three layers of the rolled dough with a light brush of oil between them (do not use too much). Roll the three layers again until slightly thinner.\n• Toast the three layers of dough together over very low heat for only a few seconds, then flip immediately (do not wait until the pan is too hot). Place them on a tray.\n• Separate each layer carefully, shape them into perfect circles, then cut each circle into two.\n• From one half-circle, fold it into a triangle shape, fill it with sambosa filling until compact, then seal it. Use a mixture of flour and water as glue to close the open side.\n• Fry the sambosa over medium heat until golden brown, then remove and drain.\n\nFILLING:\n• Dice 2 potatoes into small cubes and boil them until slightly soft. Dice 2 onions and mince 3 cloves of garlic.\n• Sauté the onion and garlic with butter until fragrant, then add 2 tablespoons of water so the garlic does not burn. Add 350 g of ground meat and cook until it turns brown.\n• Keep stirring so the meat cooks evenly.\n• Add seasoning such as salt, black pepper, cumin powder, mushroom broth powder, curry powder, and a little sugar. Taste to adjust the flavor.\n• While stirring, add a little grated ginger gradually so the flavor is not too strong.\n\nLEMON DILL YOGHURT SAUCE:\n• Add 100 g yogurt.\n• Add 3 ml lemon juice.\n• Add 2 g thyme.\n• Add seasonings (salt, black pepper).\n• Stir until well combined and taste.";
                             });
                           },
                           child: _smallCard("assets/img/bannerMakan.webp"),
@@ -259,8 +264,10 @@ class _CulturePageState extends State<CulturePage> {
                               {"title": "Tomato Sauce", "text": "Carbohydrate 35 g, lycopene"},
                               {"title": "Seasoning & Salt", "text": "Carbohydrates, Iron, Antioxidant"},
                               ];
+                              foodCategory = "food";
                               foodCalories = "The total calories of Chicken Machboos range from about 1,400–1,500 kcal. The ingredients include chicken (about 1500 kcal), Bamasti rice (about 3600 kcal),  Butter, oil, Olive Oil(about 500 kcal), Tomato Sauce (about 200 kcal), And Seasoning & Salt (about 15 kcal). This dish is rich in energy because it contains protein from chicken, carbohydrates from rice, and healthy fats that create a savory flavor and aromatic taste.";
-                              foodIngredients = "INGREDIENTS:\n• 20 g oil\n• 2 onions, chopped\n• 15 g chopped ginger\n• 10 cloves garlic\n• 3 green chilies\n• 30 g garam masala\n• 1 cinnamon stick\n• 5 cardamom pods\n• 2 bay leaves\n• 2 star anise\n• 6 cloves\n• 15 g black pepper\n• 1 kg whole chicken thighs\n• 15 g salt\n• 15 g ground coriander\n• 4 g turmeric powder\n• Water as needed\n• 30 g chicken stock\n• 1 dried lemon\n• 1 green chili\n• 2 tomatoes, cut into quarters\n• 1 kg basmati rice\n• 45 g butter\n• 60 g saffron water\n• 15 g melted butter\n• 9 g garam masala\n• 15 g Arabic spice powder / curry powder";
+                              foodHowToMake = "• Add 20 g of oil to the pan.\n• Sauté the diced onion, then add 15 g chopped ginger, whole garlic cloves, and 2–3 green bird’s eye chilies. Sauté until lightly browned.\n• Then add:\n  - 1 cinnamon stick\n  - 4–5 cardamom pods\n  - 2 bay leaves\n  - 6 cloves\n  - 15 g black pepper\n• Add 1 kg chicken and sauté for 2 minutes. Then add 15 g salt, 15 g ground coriander, and ½ tbsp turmeric powder. Stir well until evenly mixed.\n• Add enough water, then add 30 g instant chicken stock, 1 dried lemon, 1 green chili, and 4 pieces of tomato. Cook for about 30 minutes until fragrant and fully cooked.\n\nTOPPING:\n• Sauté 15 g diced shallots until they turn brown and fragrant.\n• Prepare another pan, add 30 g of oil, then sauté 10 g of raisins.\n• Add the raisins to the sautéed shallots, stir briefly, then add 5 g of salt and 10 g of cardamom powder.\n\nCHICKEN SEASONING:\n• Prepare saffron water, then add 45 g ghee, 20 g garam masala, and Arabic spices. Mix well. Pour the mixture over the chicken and let it rest for 5 minutes.\n• Then fry or roast the chicken until fully cooked.\n\nSAUCE DAQOOS:\n• Blend the tomatoes until smooth. You can also finely chop them if you prefer a slightly chunky texture.\n• Sauté the aromatics: Heat olive oil in a small pot. Add the minced garlic and chili, sauté until fragrant and slightly browned.\n• Cook the tomato paste: Add the tomato paste to the sautéed garlic, stir well, and cook for about 1 minute to remove the raw taste.\n• Cook the sauce: Pour the blended tomatoes into the pot. Add water, cumin, salt, and pepper. Stir well.\n• Simmer: Let it come to a boil, then reduce the heat. Cook until the sauce thickens and the oil begins to separate (about 5–10 minutes).\n• Finishing: Add chopped coriander leaves and lemon juice or vinegar. Stir briefly and turn off the heat.\n• Serve: Serve warm or cold as a dipping sauce for Arabian rice.\n\nRICE:\n• Remove the chicken that was previously braised, then strain out the herbs. Prepare the Iranian rice that has been soaked for 30 minutes. Add the biryani rice to the pot, add salt to taste, then add 45 g butter. Stir the rice gently and cook for about 5 minutes or until cooked, then add 60 g saffron water.\n• During the 5 minutes of cooking, gently stir the biryani rice.";
+                              foodIngredients = "• 20 g oil\n• 2 onions, chopped\n• 15 g chopped ginger\n• 10 cloves garlic\n• 3 green chilies\n• 30 g garam masala\n• 1 cinnamon stick\n• 5 cardamom pods\n• 2 bay leaves\n• 2 star anise\n• 6 cloves\n• 15 g black pepper\n• 1 kg whole chicken thighs\n• 15 g salt\n• 15 g ground coriander\n• 4 g turmeric powder\n• Water as needed\n• 30 g chicken stock\n• 1 dried lemon\n• 1 green chili\n• 2 tomatoes, cut into quarters\n• 1 kg basmati rice\n• 45 g butter\n• 60 g saffron water\n• 15 g melted butter\n• 15 g garam masala\n• 15 g Arabic spice powder / curry powder\n\nSAUCE DAQOOS:\n• 4 medium red tomatoes (300–400 g), diced\n• 5 cloves garlic, minced\n• 30 g tomato purée\n• 3 green chilies\n• 5 g coriander leaves\n• 27 g olive oil\n• 100 ml water\n• 2 g cumin powder\n• 7 g salt\n• 6 g black pepper\n• 15 g lemon juice";
                             });
                           },
                           child: _smallCard("assets/img/bannerMakan2.webp"),
@@ -269,13 +276,23 @@ class _CulturePageState extends State<CulturePage> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              mainImage = "assets/img/wadi.webp";
+                              mainImage = "assets/img/minums.webp";
                               foodTitle = "Laban";
                               foodDesc = "A traditional drink made from fermented milk that is popular in the Middle East. Generally, Laban with dates has a savory or slightly salty taste with a refreshing sour flavor from the yogurt. However, when dates are added, it gains a third flavor—sweetness—which makes the drink even more refreshing and energizing.";
-                              
-
+                              foodCategory = "drink";
+                              foodTaste = "It has a balanced sweet and sour taste, where the distinctive sweetness of the dates appears first, followed by a slightly tangy yogurt aftertaste.";
+                              foodTexture = "It has a creamy and smooth texture from the yogurt, combined with a slightly fibrous and chewy texture when you bite into the dates.";
+                              foodNutritions = [
+                                {"title": "Kurma", "text": "High in fiber, potassium, vitamin B6, and magnesium."},
+                                {"title": "Kurma Syrup", "text": "Fructose/Glucose and Iron."},
+                                {"title": "Yoghurt", "text": "Protein, calcium, probiotics, and fat."},
+                              ];
+                              foodIngredients = "• Yoghurt : 70–80 ml\n• Water : 60–70 ml\n• Date Syrup : 40 ml\n• Date : Garnish (3)\n• Mint : Garnish\n• Ice : To Fill Up";
+                              foodCalories = "The total calories of this drink range from 350–405 kcal, since dates are rich in calories. This drink can become an “energy bomb” because of its high calorie content, refreshing taste, and natural sugars that help restore the body’s balance after fasting.";
+                              foodHowToMake = "• Add Water and Yoghurt together according to the recipe. Water could be still water, or cold water. Although, preferably cold water.\n• Mix them together until they fuse together.\n• Add the Date Syrup, and make sure to mix them together.\n• Add ice.\n• Chop up a few dates, and place it on top.\n• Add a mint leaf for garnish.\n• Don't forget, to serve!";
                             });
                           },
+                          child: _smallCard("assets/img/minums.webp"),
                         ),
                       ],
                     ),
@@ -349,7 +366,7 @@ class _CulturePageState extends State<CulturePage> {
                       children: [
                     
                         religionCard(
-                          "assets/img/mosque.webp",
+                          "assets/img/islam.webp",
                           "ISLAM",
                           const Color(0xFF9C5A24),
                           const BorderRadius.only(
@@ -359,7 +376,7 @@ class _CulturePageState extends State<CulturePage> {
                         ),
                     
                         religionCard(
-                          "assets/img/mosque.webp",
+                          "assets/img/kristen.webp",
                           "CHRISTIANITY",
                           const Color(0xFFD2B48C),
                           const BorderRadius.only(
@@ -371,7 +388,7 @@ class _CulturePageState extends State<CulturePage> {
                         const SizedBox(width: 50),
                     
                         religionCard(
-                          "assets/img/mosque.webp",
+                          "assets/img/buddha.webp",
                           "BUDDHISM",
                           const Color(0xFF9C5A24),
                           const BorderRadius.only(
@@ -381,7 +398,7 @@ class _CulturePageState extends State<CulturePage> {
                         ),
                     
                         religionCard(
-                          "assets/img/mosque.webp",
+                          "assets/img/hindu.webp",
                           "HINDUISM",
                           const Color(0xFFD2B48C),
                           const BorderRadius.only(
@@ -432,20 +449,20 @@ class _CulturePageState extends State<CulturePage> {
                     children:[
 
                   _traditionCard(
-                    "assets/img/mosque.webp",
+                    "assets/img/Tradition1.webp",
                     "Al-Ayala",
                     "Al Ayala is a traditional dance performed by two rows of men holding thin sticks. It is usually performed during national celebrations, weddings, and important cultural events.",
                     313,
                   ),
                   _traditionCard(
-                    "assets/img/mosque.webp",
+                    "assets/img/Tradition2.webp",
                     "Falconry",
                     "Falconry is the traditional practice of hunting with falcons. It has been part of Emirati culture for centuries and symbolizes pride, honor, and heritage Majlis.",
                     313,
                   ),
 
                   _traditionCard(
-                    "assets/img/mosque.webp",
+                    "assets/img/Tradition3.webp",
                     "Camel Ricing",
                     "Camel racing is a popular traditional sport in the UAE. It reflects the desert lifestyle and cultural heritage of the Emirati people.",
                     313,
@@ -536,6 +553,7 @@ class _CulturePageState extends State<CulturePage> {
                 ],
               ),
             ),
+            
           ],
       ),
     );
@@ -570,7 +588,7 @@ class _CulturePageState extends State<CulturePage> {
               ),
               child: Image.asset(
                 image,
-                height: 168,
+                height: 170,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -590,7 +608,7 @@ class _CulturePageState extends State<CulturePage> {
                     ),
                   ),
 
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
 
                   Text(
                     desc,
@@ -661,6 +679,8 @@ Widget _clothingCard(
               ),
             ),
 
+            const SizedBox(height: 40,)
+
           ],
         ),
       ),
@@ -700,12 +720,16 @@ Widget religionCard(
       children: [
 
         Container(
-          width: 40,
-          height: 40,
+          width: 50,
+          height: 50,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30)
+            ),
           ),
+          
           child: Center(
             child: Image.asset(
               image,

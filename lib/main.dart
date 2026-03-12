@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mirae/screens/dashboard.dart';
-import 'package:mirae/screens/destinasi.dart';
+import 'package:mirae/screens/destinasi/destinasi.dart';
 import 'package:mirae/screens/nature.dart';
 import 'package:mirae/screens/culture_full/culture.dart';
 import 'package:mirae/screens/aboutus.dart';
 import 'package:mirae/screens/biography/biography.dart';
 import 'package:mirae/screens/global_values.dart';
-import 'package:mirae/screens/glvalues_child/government.dart';
-import 'package:mirae/screens/glvalues_child/currency.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +35,6 @@ class MyApp extends StatelessWidget {
             '/culture': (context) => const CulturePage(),
             '/biography': (context) => const BiographyPage(),
             '/global_values': (context) => const GlobalValues(),
-            '/government': (context) => const GovernmentPage(),
-            '/currency': (context) => const CurrencyPage(),
           },
         );
       },

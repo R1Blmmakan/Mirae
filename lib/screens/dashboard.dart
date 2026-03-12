@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'destinasi.dart';
+import 'destinasi/destinasi.dart';
 import 'aboutus.dart';
 import 'package:mirae/anim_logic/home_view.dart';
 

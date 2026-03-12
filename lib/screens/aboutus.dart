@@ -146,6 +146,21 @@ class _AboutusPageState extends State<AboutusPage> {
             ),
           ),
 
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + 20,
+              left: 24,
+            ),
+            child: const Text(
+              "About Us",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+
           ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -249,20 +264,6 @@ class _AboutusPageState extends State<AboutusPage> {
             ],
           ),
 
-          Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 20,
-              left: 24,
-            ),
-            child: const Text(
-              "About Us",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
         ],
       ),
     );

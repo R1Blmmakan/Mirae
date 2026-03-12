@@ -16,6 +16,7 @@ class ClothingDetailPage extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: const Color(0xff947D49),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(30),
@@ -32,7 +33,7 @@ class ClothingDetailPage extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back,color: Colors.white,),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -42,6 +43,7 @@ class ClothingDetailPage extends StatelessWidget {
                     title,
                     style: const TextStyle(
                       fontSize: 20,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -52,7 +54,7 @@ class ClothingDetailPage extends StatelessWidget {
 
               Text(
                 description,
-                style: const TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 20, color: Colors.white),
               ),
             ],
           ),
